@@ -9,7 +9,7 @@ export interface PaginatedPokemonResponse {
 }
 
 const CACHE_PREFIX = "pokeguide_cache_page_";
-const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 horas
+const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; 
 
 interface CachedPageData {
   timestamp: number;
@@ -60,7 +60,6 @@ export async function getPokemons(
 ): Promise<PaginatedPokemonResponse> {
   const cacheKey = `${CACHE_PREFIX}${page}_limit_${limit}`;
 
-  // 1. Tentar ler do Cache (LocalStorage)
   try {
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
@@ -75,7 +74,6 @@ export async function getPokemons(
     console.warn("Erro ao ler cache do localStorage:", error);
   }
 
-  // 2. Se não estiver no cache, realizar busca na PokeAPI
   const offset = (page - 1) * limit;
   const response = await fetch(
     `${baseUrl}/pokemon?limit=${limit}&offset=${offset}`,

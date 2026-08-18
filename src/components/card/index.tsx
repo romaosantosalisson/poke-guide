@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./card.css";
 import { EmojisType, type PokemonType } from "../../types";
+import pokeBola from "../../assets/images/logo.svg";
 
 const defaultPokemon: PokemonType = {
   id: "025",
@@ -27,8 +28,6 @@ interface CardProps {
 export function Card({ pokemon = defaultPokemon }: CardProps) {
   const [imageError, setImageError] = useState(false);
 
-  const placeholderUrl = `https://placehold.co/250x250/FACC15/0F172A?text=${pokemon.name}`;
-
   const getEmojiForType = (type: string) => {
     return EmojisType[normalizeType(type)] || "⭐";
   };
@@ -38,25 +37,21 @@ export function Card({ pokemon = defaultPokemon }: CardProps) {
   return (
     <div className="pokemon-card-container">
       <div className={`pokemon-card card-type-${cleanPrimaryType}`}>
-        {/* Identificador / ID do Pokémon */}
         <span className="pokemon-id">#{pokemon.id}</span>
 
-        {/* Container elegante de Imagem com efeito Glow de fundo */}
         <div className="pokemon-image-container">
           <div className="pokemon-image-glow" />
           <img
-            src={imageError ? placeholderUrl : pokemon.image}
+            src={imageError ? pokeBola : pokemon.image}
             alt={pokemon.name}
-            className="pokemon-image"
+            className="pokemon-image rounded"
             onError={() => setImageError(true)}
           />
         </div>
 
-        {/* Informações do Pokémon */}
         <div className="pokemon-info">
           <h2 className="pokemon-name">{pokemon.name}</h2>
 
-          {/* Tipagem do Pokémon (Exibe o tipo com emoji dinâmico) */}
           <div className="pokemon-types">
             {pokemon.types.map((type) => (
               <span
@@ -69,7 +64,6 @@ export function Card({ pokemon = defaultPokemon }: CardProps) {
             ))}
           </div>
 
-          {/* Habilidades do Pokémon (Cada uma em cor diferente e em Negrito) */}
           <div className="pokemon-abilities-section">
             <span className="section-title">Habilidades:</span>
             <div className="pokemon-abilities">

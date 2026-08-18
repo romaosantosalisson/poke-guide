@@ -70,7 +70,6 @@ export function Pagination({
       )}
 
       <div className="pagination-controls">
-        {/* Botão Anterior */}
         <button
           type="button"
           className="pagination-btn pagination-prev"
@@ -92,7 +91,6 @@ export function Pagination({
           <span className="btn-text">Anterior</span>
         </button>
 
-        {/* Números das páginas */}
         <div className="pagination-numbers">
           {getPageNumbers().map((page, index) => {
             if (page === "...") {
@@ -121,7 +119,6 @@ export function Pagination({
           })}
         </div>
 
-        {/* Botão Próximo */}
         <button
           type="button"
           className="pagination-btn pagination-next"
