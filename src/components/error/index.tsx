@@ -53,11 +53,7 @@ export function ErrorState({
         {/* Ações de Recuperação */}
         <div className="error-actions">
           {onRetry && (
-            <button
-              type="button"
-              className="error-retry-button"
-              onClick={onRetry}
-            >
+            <button type="button" className="error-retry-button" onClick={onRetry}>
               <svg
                 className="retry-icon"
                 viewBox="0 0 24 24"

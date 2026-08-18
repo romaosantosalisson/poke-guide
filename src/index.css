@@ -3,12 +3,7 @@
 :root {
   font-family: "Oswald", sans-serif;
   --background: #f8fafc;
-  --background-gradient: linear-gradient(
-    135deg,
-    #f8fafc 0%,
-    #dbeafe 55%,
-    #fee2e2 100%
-  );
+  --background-gradient: linear-gradient(135deg, #f8fafc 0%, #dbeafe 55%, #fee2e2 100%);
 
   --cards: #ffffff;
   --border: rgba(15, 23, 42, 0.12);
@@ -28,12 +23,7 @@
 
 :root.dark {
   --background: #0f172a;
-  --background-gradient: linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #172554 55%,
-    #7f1d1d 100%
-  );
+  --background-gradient: linear-gradient(135deg, #0f172a 0%, #172554 55%, #7f1d1d 100%);
 
   --cards: #1e293b;
   --border: rgba(248, 250, 252, 0.15);

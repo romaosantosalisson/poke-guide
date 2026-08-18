@@ -9,7 +9,7 @@ export interface PaginatedPokemonResponse {
 }
 
 const CACHE_PREFIX = "pokeguide_cache_page_";
-const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; 
+const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000;
 
 interface CachedPageData {
   timestamp: number;
@@ -75,14 +75,10 @@ export async function getPokemons(
   }
 
   const offset = (page - 1) * limit;
-  const response = await fetch(
-    `${baseUrl}/pokemon?limit=${limit}&offset=${offset}`,
-  );
+  const response = await fetch(`${baseUrl}/pokemon?limit=${limit}&offset=${offset}`);
 
   if (!response.ok) {
-    throw new Error(
-      `Falha na requisição: ${response.status} ${response.statusText}`,
-    );
+    throw new Error(`Falha na requisição: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();
@@ -91,10 +87,7 @@ export async function getPokemons(
 
   const pokemons: PokemonType[] = await Promise.all(
     data.results.map(
-      async (
-        pokemonItem: { name: string; url: string },
-        index: number,
-      ): Promise<PokemonType> => {
+      async (pokemonItem: { name: string; url: string }, index: number): Promise<PokemonType> => {
         try {
           const detailRes = await fetch(pokemonItem.url);
           if (!detailRes.ok) {
@@ -102,20 +95,15 @@ export async function getPokemons(
           }
           const detail: RawPokeApiPokemon = await detailRes.json();
 
-          const capitalizedName =
-            detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
+          const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
 
-          const types =
-            detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
+          const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
 
           const abilities: AbilityType[] =
-            detail.abilities?.map(
-              (a: RawPokeApiAbility, abilityIndex: number) => ({
-                name: a.ability.name.replace(/-/g, " "),
-                color:
-                  abilityColors[(index + abilityIndex) % abilityColors.length],
-              }),
-            ) || [];
+            detail.abilities?.map((a: RawPokeApiAbility, abilityIndex: number) => ({
+              name: a.ability.name.replace(/-/g, " "),
+              color: abilityColors[(index + abilityIndex) % abilityColors.length],
+            })) || [];
 
           return {
             id: String(detail.id).padStart(3, "0"),
@@ -132,9 +120,7 @@ export async function getPokemons(
           const fallbackId = String(offset + index + 1).padStart(3, "0");
           return {
             id: fallbackId,
-            name:
-              pokemonItem.name.charAt(0).toUpperCase() +
-              pokemonItem.name.slice(1),
+            name: pokemonItem.name.charAt(0).toUpperCase() + pokemonItem.name.slice(1),
             image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${offset + index + 1}.png`,
             types: ["normal"],
             abilities: [{ name: "Desconhecido", color: "#64748B" }],
@@ -159,19 +145,13 @@ export async function getPokemons(
     };
     localStorage.setItem(cacheKey, JSON.stringify(cachePayload));
   } catch (error) {
-    console.warn(
-      "Não foi possível salvar no localStorage (limite atingido?):",
-      error,
-    );
+    console.warn("Não foi possível salvar no localStorage (limite atingido?):", error);
   }
 
   return result;
 }
 
-export async function getAllPokemons(
-  page: number = 1,
-  limit: number = 8,
-): Promise<PokemonType[]> {
+export async function getAllPokemons(page: number = 1, limit: number = 8): Promise<PokemonType[]> {
   const result = await getPokemons(page, limit);
   return result.pokemons;
 }

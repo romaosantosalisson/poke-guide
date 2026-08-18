@@ -32,11 +32,7 @@ export function App() {
       } catch (err) {
         if (isMounted) {
           console.error("Erro ao buscar Pokémon:", err);
-          setError(
-            err instanceof Error
-              ? err.message
-              : "Erro desconhecido ao carregar os dados",
-          );
+          setError(err instanceof Error ? err.message : "Erro desconhecido ao carregar os dados");
         }
       } finally {
         if (isMounted) {
@@ -70,11 +66,7 @@ export function App() {
       <>
         <Header />
         <main>
-          <ErrorState
-            title="Erro ao buscar Pokémon's!"
-            details={error}
-            onRetry={handleRetry}
-          />
+          <ErrorState title="Erro ao buscar Pokémon's!" details={error} onRetry={handleRetry} />
         </main>
       </>
     );

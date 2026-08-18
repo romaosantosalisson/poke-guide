@@ -6,7 +6,7 @@ export function Theme() {
     const theme = localStorage.getItem("theme");
 
     if (theme) {
-      return theme === "dark"
+      return theme === "dark";
     }
 
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -20,7 +20,7 @@ export function Theme() {
       localStorage.setItem("theme", "dark");
     } else {
       htmlRootElement.classList.remove("dark");
-      localStorage.setItem("theme", "light")
+      localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
 
@@ -28,8 +28,11 @@ export function Theme() {
     <>
       <button
         className="theme-toggle"
-        onClick={() => { setDarkMode(!darkMode) }}>
-        { darkMode ? "☀️" : "🌙" }
+        onClick={() => {
+          setDarkMode(!darkMode);
+        }}
+      >
+        {darkMode ? "☀️" : "🌙"}
       </button>
     </>
   );

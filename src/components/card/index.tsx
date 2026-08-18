@@ -54,10 +54,7 @@ export function Card({ pokemon = defaultPokemon }: CardProps) {
 
           <div className="pokemon-types">
             {pokemon.types.map((type) => (
-              <span
-                key={type}
-                className={`type-badge type-${cleanPrimaryType}`}
-              >
+              <span key={type} className={`type-badge type-${cleanPrimaryType}`}>
                 <span className="type-emoji">{getEmojiForType(type)}</span>
                 <span className="type-label">{type}</span>
               </span>
@@ -68,11 +65,7 @@ export function Card({ pokemon = defaultPokemon }: CardProps) {
             <span className="section-title">Habilidades:</span>
             <div className="pokemon-abilities">
               {pokemon.abilities.map((ability, index) => (
-                <strong
-                  key={index}
-                  className="ability-badge"
-                  style={{ color: ability.color }}
-                >
+                <strong key={index} className="ability-badge" style={{ color: ability.color }}>
                   {ability.name}
                 </strong>
               ))}
