@@ -2,26 +2,30 @@ import { useState } from "react";
 import "./card.css";
 import { EmojisType, type PokemonType } from "../../types";
 
+const defaultPokemon: PokemonType = {
+  id: "025",
+  name: "Pikachu",
+  types: ["eletrico"],
+  abilities: [
+    { name: "Estática", color: "#F59E0B" },
+    { name: "Para-Raios", color: "#3B82F6" },
+  ],
+  image:
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+};
+
 const normalizeType = (type: string) =>
   type
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
-export function Card(/*pokemon: PokemonType*/) {
-  const [imageError, setImageError] = useState(false);
+interface CardProps {
+  pokemon?: PokemonType;
+}
 
-  const pokemon: PokemonType = {
-    id: "025",
-    name: "Pikachu",
-    types: ["Elétrico"],
-    abilities: [
-      { name: "Estática", color: "#F59E0B" },
-      { name: "Para-Raios", color: "#3B82F6" },
-    ],
-    image:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-  };
+export function Card({ pokemon = defaultPokemon }: CardProps) {
+  const [imageError, setImageError] = useState(false);
 
   const placeholderUrl = `https://placehold.co/250x250/FACC15/0F172A?text=${pokemon.name}`;
 
@@ -29,7 +33,7 @@ export function Card(/*pokemon: PokemonType*/) {
     return EmojisType[normalizeType(type)] || "⭐";
   };
 
-  const cleanPrimaryType = normalizeType(pokemon.types[0]);
+  const cleanPrimaryType = normalizeType(pokemon.types[0] || "normal");
 
   return (
     <div className="pokemon-card-container">

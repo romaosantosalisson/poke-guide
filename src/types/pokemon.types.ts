@@ -5,6 +5,7 @@ export type AbilityType = {
 
 export type PokemonType = {
   id: string;
+  url?: string,
   image: string;
   name: string;
   types: string[];

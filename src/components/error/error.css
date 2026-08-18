@@ -1,0 +1,296 @@
+/* Container de Erro */
+.error-container {
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+/* Card de Erro */
+.error-card {
+  position: relative;
+  background-color: var(--cards);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 2.4rem;
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 45px rgba(239, 68, 68, 0.08);
+  backdrop-filter: blur(10px);
+  animation: fadeInError 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+:root.dark .error-card {
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(239, 68, 68, 0.15);
+}
+
+/* Ícone de Erro com Efeito de Alerta */
+.error-icon-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.error-icon-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(239, 68, 68, 0.35) 0%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  animation: pulseErrorGlow 2s ease-in-out infinite alternate;
+}
+
+.error-pokeball-icon {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.2);
+  animation: shakeIcon 4s ease-in-out infinite;
+}
+
+:root.dark .error-pokeball-icon {
+  background-color: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+.error-svg {
+  width: 36px;
+  height: 36px;
+}
+
+/* Informações */
+.error-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.error-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.error-message {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 380px;
+}
+
+/* Detalhes Técnicos */
+.error-details-box {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  background-color: rgba(15, 23, 42, 0.04);
+  border: 1px dashed rgba(239, 68, 68, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.4rem;
+}
+
+:root.dark .error-details-box {
+  background-color: rgba(248, 250, 252, 0.03);
+}
+
+.error-details-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.error-details-text {
+  font-family: monospace;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+/* Ações (Botões) */
+.error-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.error-retry-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: none;
+  border-radius: 5rem;
+  padding: 1rem 2.4rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.error-retry-button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(239, 68, 68, 0.45);
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+.error-retry-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.retry-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s ease;
+}
+
+.error-retry-button:hover .retry-icon {
+  transform: rotate(-180deg);
+}
+
+.error-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background-color: rgba(15, 23, 42, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+:root.dark .error-secondary-button {
+  background-color: rgba(248, 250, 252, 0.05);
+  border-color: rgba(248, 250, 252, 0.12);
+}
+
+.error-secondary-button:hover {
+  background-color: rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+:root.dark .error-secondary-button:hover {
+  background-color: rgba(248, 250, 252, 0.1);
+}
+
+.error-secondary-button:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeInError {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseErrorGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes shakeIcon {
+  0%,
+  85%,
+  100% {
+    transform: rotate(0deg);
+  }
+  88% {
+    transform: rotate(-12deg);
+  }
+  92% {
+    transform: rotate(12deg);
+  }
+  96% {
+    transform: rotate(-8deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .error-card {
+    padding: 3rem 2rem;
+  }
+
+  .error-title {
+    font-size: 2.3rem;
+  }
+
+  .error-message {
+    font-size: 1.4rem;
+  }
+
+  .error-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .error-retry-button,
+  .error-secondary-button {
+    width: 100%;
+  }
+}
