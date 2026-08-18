@@ -1,0 +1,129 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.navbar-list {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 0.6rem;
+  background-color: rgba(15, 23, 42, 0.04);
+  border-radius: 5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* Dark mode adjustment for the navbar list background and border */
+:root.dark .navbar-list {
+  background-color: rgba(248, 250, 252, 0.06);
+  border: 1px solid rgba(248, 250, 252, 0.1);
+}
+
+.navbar-item {
+  display: flex;
+}
+
+.navbar-button {
+  background: transparent;
+  border: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  padding: 0.8rem 1.8rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  outline: none;
+}
+
+/* Focus style for accessibility */
+.navbar-button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Hover effects */
+.navbar-button:hover {
+  color: var(--text-primary);
+  background-color: rgba(59, 130, 246, 0.12); /* Subtle blue glow background */
+  transform: translateY(-1px);
+}
+
+:root.dark .navbar-button:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Active style (Pokéball themed / modern blue highlight) */
+.navbar-button.active {
+  color: #ffffff;
+  background-color: var(--red);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+  font-weight: 600;
+  transform: translateY(0);
+}
+
+/* Let the active button have an alternating Poké theme:
+   If we want to alternate colors, we can or we can keep a beautiful solid theme color.
+   Let's make the active color match --red (Pokéball red) or --blue (Pokéball blue).
+   Since --red is active and has a gorgeous shadow, it looks highly polished! */
+:root.dark .navbar-button.active {
+  background-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45);
+}
+
+/* Hover effect on active state (disable transform / shift background) */
+.navbar-button.active:hover {
+  color: #ffffff;
+  background-color: var(--red);
+  transform: none;
+}
+
+:root.dark .navbar-button.active:hover {
+  background-color: var(--blue);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .navbar-button {
+    font-size: 1.4rem;
+    padding: 0.8rem 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-list {
+    gap: 0.5rem;
+    padding: 0.4rem;
+  }
+  
+  .navbar-button {
+    font-size: 1.3rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .navbar-list {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 2rem;
+    padding: 0.8rem;
+  }
+  
+  .navbar-button {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+}

@@ -1,0 +1,20 @@
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--cards);
+  color: var(--text-primary);
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  transition: 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
