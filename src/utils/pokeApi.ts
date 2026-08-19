@@ -54,6 +54,13 @@ interface RawPokeApiPokemon {
   abilities?: RawPokeApiAbility[];
 }
 
+interface PokeApiPokemonEntry {
+  pokemon: {
+    name: string;
+    url: string;
+  };
+}
+
 export async function getPokemons(
   page: number = 1,
   limit: number = 8,
@@ -100,10 +107,12 @@ export async function getPokemons(
           const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
 
           const abilities: AbilityType[] =
-            detail.abilities?.map((a: RawPokeApiAbility, abilityIndex: number) => ({
-              name: a.ability.name.replace(/-/g, " "),
-              color: abilityColors[(index + abilityIndex) % abilityColors.length],
-            })) || [];
+            detail.abilities && detail.abilities.length > 0
+              ? detail.abilities.map((a: RawPokeApiAbility, abilityIndex: number) => ({
+                  name: a.ability.name,
+                  color: abilityColors[(index + abilityIndex) % abilityColors.length],
+                }))
+              : [{ name: "desconhecido", color: "#64748B" }];
 
           return {
             id: String(detail.id).padStart(3, "0"),
@@ -168,10 +177,12 @@ export async function getPokemonByNameOrId(nameOrId: string): Promise<PokemonTyp
     const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
     const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
     const abilities: AbilityType[] =
-      detail.abilities?.map((a: RawPokeApiAbility, index: number) => ({
-        name: a.ability.name.replace(/-/g, " "),
-        color: abilityColors[index % abilityColors.length],
-      })) || [];
+      detail.abilities && detail.abilities.length > 0
+        ? detail.abilities.map((a: RawPokeApiAbility, index: number) => ({
+            name: a.ability.name,
+            color: abilityColors[index % abilityColors.length],
+          }))
+        : [{ name: "desconhecido", color: "#64748B" }];
 
     return {
       id: String(detail.id).padStart(3, "0"),
@@ -197,39 +208,43 @@ export async function getPokemonsByType(typeName: string): Promise<PokemonType[]
     const response = await fetch(`${baseUrl}/type/${clean}`);
     if (!response.ok) return [];
     const data = await response.json();
-    
+
     const pokemonList = data.pokemon.slice(0, 20);
 
     const pokemons: PokemonType[] = await Promise.all(
-      pokemonList.map(async (pItem: any, index: number): Promise<PokemonType | null> => {
-        try {
-          const detailRes = await fetch(pItem.pokemon.url);
-          if (!detailRes.ok) return null;
-          const detail: RawPokeApiPokemon = await detailRes.json();
+      pokemonList.map(
+        async (pItem: PokeApiPokemonEntry, index: number): Promise<PokemonType | null> => {
+          try {
+            const detailRes = await fetch(pItem.pokemon.url);
+            if (!detailRes.ok) return null;
+            const detail: RawPokeApiPokemon = await detailRes.json();
 
-          const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
-          const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
-          const abilities: AbilityType[] =
-            detail.abilities?.map((a: RawPokeApiAbility, abilityIndex: number) => ({
-              name: a.ability.name.replace(/-/g, " "),
-              color: abilityColors[(index + abilityIndex) % abilityColors.length],
-            })) || [];
+            const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
+            const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
+            const abilities: AbilityType[] =
+              detail.abilities && detail.abilities.length > 0
+                ? detail.abilities.map((a: RawPokeApiAbility, abilityIndex: number) => ({
+                    name: a.ability.name,
+                    color: abilityColors[(index + abilityIndex) % abilityColors.length],
+                  }))
+                : [{ name: "desconhecido", color: "#64748B" }];
 
-          return {
-            id: String(detail.id).padStart(3, "0"),
-            name: capitalizedName,
-            image:
-              detail.sprites?.other?.["official-artwork"]?.front_default ||
-              detail.sprites?.front_default ||
-              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
-            types,
-            abilities,
-          };
-        } catch {
-          return null;
-        }
-      })
-    ).then(results => results.filter((p): p is PokemonType => p !== null));
+            return {
+              id: String(detail.id).padStart(3, "0"),
+              name: capitalizedName,
+              image:
+                detail.sprites?.other?.["official-artwork"]?.front_default ||
+                detail.sprites?.front_default ||
+                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
+              types,
+              abilities,
+            };
+          } catch {
+            return null;
+          }
+        },
+      ),
+    ).then((results) => results.filter((p): p is PokemonType => p !== null));
 
     return pokemons;
   } catch (error) {
@@ -250,35 +265,39 @@ export async function getPokemonsByAbility(abilityName: string): Promise<Pokemon
     const pokemonList = data.pokemon.slice(0, 20);
 
     const pokemons: PokemonType[] = await Promise.all(
-      pokemonList.map(async (pItem: any, index: number): Promise<PokemonType | null> => {
-        try {
-          const detailRes = await fetch(pItem.pokemon.url);
-          if (!detailRes.ok) return null;
-          const detail: RawPokeApiPokemon = await detailRes.json();
+      pokemonList.map(
+        async (pItem: PokeApiPokemonEntry, index: number): Promise<PokemonType | null> => {
+          try {
+            const detailRes = await fetch(pItem.pokemon.url);
+            if (!detailRes.ok) return null;
+            const detail: RawPokeApiPokemon = await detailRes.json();
 
-          const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
-          const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
-          const abilities: AbilityType[] =
-            detail.abilities?.map((a: RawPokeApiAbility, abilityIndex: number) => ({
-              name: a.ability.name.replace(/-/g, " "),
-              color: abilityColors[(index + abilityIndex) % abilityColors.length],
-            })) || [];
+            const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
+            const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
+            const abilities: AbilityType[] =
+              detail.abilities && detail.abilities.length > 0
+                ? detail.abilities.map((a: RawPokeApiAbility, abilityIndex: number) => ({
+                    name: a.ability.name,
+                    color: abilityColors[(index + abilityIndex) % abilityColors.length],
+                  }))
+                : [{ name: "desconhecido", color: "#64748B" }];
 
-          return {
-            id: String(detail.id).padStart(3, "0"),
-            name: capitalizedName,
-            image:
-              detail.sprites?.other?.["official-artwork"]?.front_default ||
-              detail.sprites?.front_default ||
-              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
-            types,
-            abilities,
-          };
-        } catch {
-          return null;
-        }
-      })
-    ).then(results => results.filter((p): p is PokemonType => p !== null));
+            return {
+              id: String(detail.id).padStart(3, "0"),
+              name: capitalizedName,
+              image:
+                detail.sprites?.other?.["official-artwork"]?.front_default ||
+                detail.sprites?.front_default ||
+                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
+              types,
+              abilities,
+            };
+          } catch {
+            return null;
+          }
+        },
+      ),
+    ).then((results) => results.filter((p): p is PokemonType => p !== null));
 
     return pokemons;
   } catch (error) {

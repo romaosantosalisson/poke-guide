@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Card } from "../components/card";
 import { ErrorState } from "../components/error";
 import { Loading } from "../components/loading";
@@ -9,6 +10,7 @@ import { getPokemons } from "../utils/pokeApi";
 const ITEMS_PER_PAGE = 8;
 
 export function Home() {
+  const { t } = useTranslation();
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -82,7 +84,7 @@ export function Home() {
   return (
     <>
       <h2>
-        Lista de Pokémon's{" "}
+        {t("pokemonList")}{" "}
         {totalCount > 0 && (
           <span
             style={{
@@ -91,7 +93,7 @@ export function Home() {
               fontWeight: 400,
             }}
           >
-            (Página {currentPage} de {totalPages} • Total: {totalCount})
+            ({t("pageInfo", { currentPage, totalPages, totalCount })})
           </span>
         )}
       </h2>

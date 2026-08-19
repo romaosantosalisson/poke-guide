@@ -29,11 +29,13 @@ footer.app-footer {
 }
 
 /* Accent highlight color for the name */
-.footer-author {
+.footer-author a {
+  text-decoration: none;
   color: var(--red) !important;
   font-weight: 700 !important;
 }
 
-:root.dark .footer-author {
+:root.dark .footer-author a {
+  text-decoration: none;
   color: var(--yellow) !important;
 }

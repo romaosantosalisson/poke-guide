@@ -54,7 +54,7 @@
 /* Hover effects */
 .navbar-button:hover {
   color: var(--text-primary);
-  background-color: rgba(59, 130, 246, 0.12); /* Subtle blue glow background */
+  background-color: rgba(59, 130, 246, 0.12);
   transform: translateY(-1px);
 }
 
@@ -62,7 +62,6 @@
   background-color: rgba(59, 130, 246, 0.2);
 }
 
-/* Active style (Pokéball themed / modern blue highlight) */
 .navbar-button.active {
   color: #ffffff;
   background-color: var(--red);
@@ -71,16 +70,11 @@
   transform: translateY(0);
 }
 
-/* Let the active button have an alternating Poké theme:
-   If we want to alternate colors, we can or we can keep a beautiful solid theme color.
-   Let's make the active color match --red (Pokéball red) or --blue (Pokéball blue).
-   Since --red is active and has a gorgeous shadow, it looks highly polished! */
 :root.dark .navbar-button.active {
   background-color: var(--blue);
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45);
 }
 
-/* Hover effect on active state (disable transform / shift background) */
 .navbar-button.active:hover {
   color: #ffffff;
   background-color: var(--red);
@@ -91,7 +85,6 @@
   background-color: var(--blue);
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
   .navbar-button {
     font-size: 1.4rem;

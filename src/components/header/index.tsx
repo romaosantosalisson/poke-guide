@@ -1,5 +1,6 @@
 import { Theme } from "../theme";
 import { Navbar } from "../navbar";
+import { LanguageSelector } from "./LanguageSelector";
 import "./header.css";
 import logo from "../../assets/images/logo.svg";
 
@@ -11,7 +12,10 @@ export function Header() {
         Poke Guide
       </h1>
       <Navbar />
-      <Theme />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Theme />
+        <LanguageSelector />
+      </div>
     </header>
   );
 }

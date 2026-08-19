@@ -14,9 +14,10 @@ export function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/nome" element={<SearchByName />} />
-            <Route path="/tipo" element={<SearchByType />} />
-            <Route path="/habilidade" element={<SearchByAbility />} />
+            {/* <Route path="/home" element={<Home />} /> */}
+            <Route path="/search-name" element={<SearchByName />} />
+            <Route path="/search-type" element={<SearchByType />} />
+            <Route path="/search-ability" element={<SearchByAbility />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

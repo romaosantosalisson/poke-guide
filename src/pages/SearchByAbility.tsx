@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Card } from "../components/card";
 import { Loading } from "../components/loading";
 import type { PokemonType } from "../types";
@@ -6,6 +7,7 @@ import { getPokemonsByAbility } from "../utils/pokeApi";
 import "./pages.css";
 
 export function SearchByAbility() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [loading, setLoading] = useState(false);
@@ -14,12 +16,12 @@ export function SearchByAbility() {
 
   // Suggested popular abilities
   const abilities = [
-    { id: "overgrow", label: "Overgrow (Crescer)" },
-    { id: "blaze", label: "Blaze (Chama)" },
-    { id: "torrent", label: "Torrent (Torrente)" },
-    { id: "static", label: "Static (Estática)" },
-    { id: "levitate", label: "Levitate (Levitação)" },
-    { id: "intimidate", label: "Intimidate (Intimidação)" },
+    { id: "overgrow", label: t("abilities.overgrow", { defaultValue: "Supercrescimento" }) },
+    { id: "blaze", label: t("abilities.blaze", { defaultValue: "Chama" }) },
+    { id: "torrent", label: t("abilities.torrent", { defaultValue: "Torrente" }) },
+    { id: "static", label: t("abilities.static", { defaultValue: "Estática" }) },
+    { id: "levitate", label: t("abilities.levitate", { defaultValue: "Levitação" }) },
+    { id: "intimidate", label: t("abilities.intimidate", { defaultValue: "Intimidação" }) },
   ];
 
   const handleSearch = async (abilityId: string) => {
@@ -34,7 +36,7 @@ export function SearchByAbility() {
       const results = await getPokemonsByAbility(abilityId);
       setPokemons(results);
       if (results.length === 0) {
-        setError(`Nenhum Pokémon encontrado com a habilidade "${abilityId}".`);
+        setError(`${t("noResult")} "${abilityId}".`);
       }
     } catch (err) {
       console.error(err);
@@ -47,27 +49,30 @@ export function SearchByAbility() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleSearch(searchTerm);
+    const cleanTerm = searchTerm.trim().toLowerCase();
+    const matched = abilities.find(
+      (a) => a.id.toLowerCase() === cleanTerm || a.label.toLowerCase() === cleanTerm,
+    );
+    const abilityId = matched ? matched.id : cleanTerm;
+    handleSearch(abilityId);
   };
 
   return (
     <div className="search-page-container">
       <div className="search-box-card">
-        <h2 className="search-box-title">Buscar por Habilidade</h2>
-        <p className="search-box-desc">
-          Digite ou selecione uma das habilidades abaixo para ver os Pokémons que a possuem.
-        </p>
+        <h2 className="search-box-title">{t("searchByAbility")}</h2>
+        <p className="search-box-desc">{t("searchByAbilityDesc")}</p>
 
         <form onSubmit={handleSubmit} className="search-form">
           <input
             type="text"
             className="search-input"
-            placeholder="Ex: static, blaze, overgrow..."
+            placeholder={t("searchByAbilityPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button type="submit" className="search-button">
-            Buscar
+            {t("search")}
           </button>
         </form>
 
@@ -99,7 +104,7 @@ export function SearchByAbility() {
         {!loading && error && (
           <div className="empty-state">
             <span className="empty-state-icon">⚠️</span>
-            <h3 className="empty-state-title">Sem resultados</h3>
+            <h3 className="empty-state-title">{t("noResult")}</h3>
             <p className="empty-state-desc">{error}</p>
           </div>
         )}
@@ -107,17 +112,15 @@ export function SearchByAbility() {
         {!loading && !hasSearched && (
           <div className="empty-state">
             <span className="empty-state-icon">⚡</span>
-            <h3 className="empty-state-title">Selecione uma habilidade</h3>
-            <p className="empty-state-desc">
-              Escolha uma habilidade na lista acima ou faça uma busca personalizada para listar os Pokémons.
-            </p>
+            <h3 className="empty-state-title">{t("selectAbility")}</h3>
+            <p className="empty-state-desc">{t("searchByAbilityReady")}</p>
           </div>
         )}
 
         {!loading && hasSearched && pokemons.length > 0 && !error && (
           <>
             <h3 className="search-results-header">
-              Pokémons Encontrados ({pokemons.length})
+              {t("found")} ({pokemons.length})
             </h3>
             <div className="results-grid">
               {pokemons.map((pokemon) => (

@@ -1,0 +1,28 @@
+.language-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.lang-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.lang-button:hover {
+  background-color: rgba(15, 23, 42, 0.05);
+}
+
+.lang-button.active {
+  border-color: var(--blue);
+  color: var(--text-primary);
+}

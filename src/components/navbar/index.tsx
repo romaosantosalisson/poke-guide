@@ -1,27 +1,29 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./navbar.css";
 
 export function Navbar() {
-  const location = useLocation();
+  const { t } = useTranslation();
 
   const menuItems = [
-    { id: "/", label: "Início" },
-    { id: "/nome", label: "Buscar por nome" },
-    { id: "/tipo", label: "Buscar por Tipo" },
-    { id: "/habilidade", label: "Buscar por Habilidade" },
+    { path: "/", label: t("home") },
+    { path: "/search-name", label: t("searchByName") },
+    { path: "/search-type", label: t("searchByType") },
+    { path: "/search-ability", label: t("searchByAbility") },
   ];
 
   return (
     <nav className="navbar">
       <ul className="navbar-list">
         {menuItems.map((item) => (
-          <li key={item.id} className="navbar-item">
-            <Link
-              to={item.id}
-              className={`navbar-button ${location.pathname === item.id ? "active" : ""}`}
+          <li key={item.path} className="navbar-item">
+            <NavLink
+              to={item.path}
+              end={item.path === "/"}
+              className={({ isActive }) => `navbar-button ${isActive ? "active" : ""}`}
             >
               {item.label}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>

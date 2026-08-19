@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import "./pagination.css";
 
 interface PaginationProps {
@@ -15,6 +16,7 @@ export function Pagination({
   totalItems,
   itemsPerPage = 8,
 }: PaginationProps) {
+  const { t } = useTranslation();
   if (totalPages <= 1) return null;
 
   const getPageNumbers = () => {
@@ -75,7 +77,7 @@ export function Pagination({
           className="pagination-btn pagination-prev"
           onClick={() => handlePageClick(currentPage - 1)}
           disabled={currentPage === 1}
-          aria-label="Página anterior"
+          aria-label={t("prev")}
         >
           <svg
             className="pagination-arrow-icon"
@@ -88,7 +90,7 @@ export function Pagination({
           >
             <polyline points="15 18 9 12 15 6" />
           </svg>
-          <span className="btn-text">Anterior</span>
+          <span className="btn-text">{t("prev")}</span>
         </button>
 
         <div className="pagination-numbers">
@@ -124,9 +126,9 @@ export function Pagination({
           className="pagination-btn pagination-next"
           onClick={() => handlePageClick(currentPage + 1)}
           disabled={currentPage === totalPages}
-          aria-label="Próxima página"
+          aria-label={t("next")}
         >
-          <span className="btn-text">Próximo</span>
+          <span className="btn-text">{t("next")}</span>
           <svg
             className="pagination-arrow-icon"
             viewBox="0 0 24 24"
