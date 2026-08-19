@@ -27,6 +27,8 @@
 }
 
 .navbar-button {
+  display: inline-block;
+  text-decoration: none;
   background: transparent;
   border: none;
   font-family: "Oswald", sans-serif;

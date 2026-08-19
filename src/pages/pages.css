@@ -1,0 +1,220 @@
+/* Styles for the Search Pages */
+
+.search-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.search-box-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--cards);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+:root.dark .search-box-card {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.search-box-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.search-box-desc {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1.2rem 2rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  background-color: rgba(15, 23, 42, 0.04);
+  border: 2px solid rgba(15, 23, 42, 0.1);
+  border-radius: 5rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+:root.dark .search-input {
+  background-color: rgba(248, 250, 252, 0.05);
+  border: 2px solid rgba(248, 250, 252, 0.1);
+}
+
+.search-input:focus {
+  border-color: var(--blue);
+  background-color: var(--cards);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+:root.dark .search-input:focus {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+.search-button {
+  padding: 1.2rem 2.5rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--red);
+  border: none;
+  border-radius: 5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.search-button:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.35);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+:root.dark .search-button {
+  background-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+:root.dark .search-button:hover {
+  background-color: #2563eb;
+  box-shadow: 0 6px 15px rgba(59, 130, 246, 0.35);
+}
+
+/* Results section */
+.results-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.results-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-state-icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.empty-state-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+}
+
+.empty-state-desc {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Response/Results subheader */
+.search-results-header {
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--border);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+/* Suggestions/Tags section */
+.suggestions-box {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.suggestion-tag {
+  padding: 0.5rem 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  background-color: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: var(--text-secondary);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+:root.dark .suggestion-tag {
+  background-color: rgba(248, 250, 252, 0.08);
+  border: 1px solid rgba(248, 250, 252, 0.1);
+}
+
+.suggestion-tag:hover {
+  background-color: var(--red);
+  color: #ffffff;
+  border-color: var(--red);
+  transform: scale(1.05);
+}
+
+:root.dark .suggestion-tag:hover {
+  background-color: var(--blue);
+  color: #ffffff;
+  border-color: var(--blue);
+}

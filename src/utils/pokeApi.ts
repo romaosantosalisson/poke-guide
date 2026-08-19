@@ -155,3 +155,134 @@ export async function getAllPokemons(page: number = 1, limit: number = 8): Promi
   const result = await getPokemons(page, limit);
   return result.pokemons;
 }
+
+export async function getPokemonByNameOrId(nameOrId: string): Promise<PokemonType | null> {
+  const clean = nameOrId.toLowerCase().trim();
+  if (!clean) return null;
+
+  try {
+    const response = await fetch(`${baseUrl}/pokemon/${clean}`);
+    if (!response.ok) return null;
+    const detail: RawPokeApiPokemon = await response.json();
+
+    const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
+    const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
+    const abilities: AbilityType[] =
+      detail.abilities?.map((a: RawPokeApiAbility, index: number) => ({
+        name: a.ability.name.replace(/-/g, " "),
+        color: abilityColors[index % abilityColors.length],
+      })) || [];
+
+    return {
+      id: String(detail.id).padStart(3, "0"),
+      name: capitalizedName,
+      image:
+        detail.sprites?.other?.["official-artwork"]?.front_default ||
+        detail.sprites?.front_default ||
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
+      types,
+      abilities,
+    };
+  } catch (error) {
+    console.error(`Erro ao buscar Pokémon por nome/ID (${nameOrId}):`, error);
+    return null;
+  }
+}
+
+export async function getPokemonsByType(typeName: string): Promise<PokemonType[]> {
+  const clean = typeName.toLowerCase().trim();
+  if (!clean) return [];
+
+  try {
+    const response = await fetch(`${baseUrl}/type/${clean}`);
+    if (!response.ok) return [];
+    const data = await response.json();
+    
+    const pokemonList = data.pokemon.slice(0, 20);
+
+    const pokemons: PokemonType[] = await Promise.all(
+      pokemonList.map(async (pItem: any, index: number): Promise<PokemonType | null> => {
+        try {
+          const detailRes = await fetch(pItem.pokemon.url);
+          if (!detailRes.ok) return null;
+          const detail: RawPokeApiPokemon = await detailRes.json();
+
+          const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
+          const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
+          const abilities: AbilityType[] =
+            detail.abilities?.map((a: RawPokeApiAbility, abilityIndex: number) => ({
+              name: a.ability.name.replace(/-/g, " "),
+              color: abilityColors[(index + abilityIndex) % abilityColors.length],
+            })) || [];
+
+          return {
+            id: String(detail.id).padStart(3, "0"),
+            name: capitalizedName,
+            image:
+              detail.sprites?.other?.["official-artwork"]?.front_default ||
+              detail.sprites?.front_default ||
+              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
+            types,
+            abilities,
+          };
+        } catch {
+          return null;
+        }
+      })
+    ).then(results => results.filter((p): p is PokemonType => p !== null));
+
+    return pokemons;
+  } catch (error) {
+    console.error(`Erro ao buscar Pokémons por tipo (${typeName}):`, error);
+    return [];
+  }
+}
+
+export async function getPokemonsByAbility(abilityName: string): Promise<PokemonType[]> {
+  const clean = abilityName.toLowerCase().trim().replace(/\s+/g, "-");
+  if (!clean) return [];
+
+  try {
+    const response = await fetch(`${baseUrl}/ability/${clean}`);
+    if (!response.ok) return [];
+    const data = await response.json();
+
+    const pokemonList = data.pokemon.slice(0, 20);
+
+    const pokemons: PokemonType[] = await Promise.all(
+      pokemonList.map(async (pItem: any, index: number): Promise<PokemonType | null> => {
+        try {
+          const detailRes = await fetch(pItem.pokemon.url);
+          if (!detailRes.ok) return null;
+          const detail: RawPokeApiPokemon = await detailRes.json();
+
+          const capitalizedName = detail.name.charAt(0).toUpperCase() + detail.name.slice(1);
+          const types = detail.types?.map((t: RawPokeApiType) => t.type.name) || [];
+          const abilities: AbilityType[] =
+            detail.abilities?.map((a: RawPokeApiAbility, abilityIndex: number) => ({
+              name: a.ability.name.replace(/-/g, " "),
+              color: abilityColors[(index + abilityIndex) % abilityColors.length],
+            })) || [];
+
+          return {
+            id: String(detail.id).padStart(3, "0"),
+            name: capitalizedName,
+            image:
+              detail.sprites?.other?.["official-artwork"]?.front_default ||
+              detail.sprites?.front_default ||
+              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${detail.id}.png`,
+            types,
+            abilities,
+          };
+        } catch {
+          return null;
+        }
+      })
+    ).then(results => results.filter((p): p is PokemonType => p !== null));
+
+    return pokemons;
+  } catch (error) {
+    console.error(`Erro ao buscar Pokémons por habilidade (${abilityName}):`, error);
+    return [];
+  }
+}

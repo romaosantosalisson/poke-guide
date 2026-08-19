@@ -1,0 +1,39 @@
+footer.app-footer {
+  width: 100%;
+  padding: 3rem 2rem;
+  margin-top: auto; /* Push footer to the bottom of the body/wrapper if using flex */
+  border-top: 1px solid var(--border);
+  background-color: rgba(15, 23, 42, 0.02);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+:root.dark footer.app-footer {
+  background-color: rgba(15, 23, 42, 0.3);
+}
+
+.footer-content {
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+.footer-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Accent highlight color for the name */
+.footer-author {
+  color: var(--red) !important;
+  font-weight: 700 !important;
+}
+
+:root.dark .footer-author {
+  color: var(--yellow) !important;
+}
