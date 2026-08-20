@@ -47,7 +47,7 @@ Poke Guide is a comprehensive web application designed to help users discover an
 
 ---
 
-<div align="center">MIT License | Created by <a href="https://github.com/romaosantosalisson">Álisson</a></div>
+© 2026 **Poke Guide** — built with ❤️ and ☕ by **Álisson** | MIT License
 
 ---
 
@@ -92,4 +92,4 @@ Poke Guide é uma aplicação web completa projetada para ajudar usuários a des
 
 ---
 
-<div align="center">MIT License | Criado por <a href="https://github.com/romaosantosalisson">Álisson</a></div>
+© 2026 **Poke Guide** — construído com ❤️ e ☕ por **Álisson** | MIT License
