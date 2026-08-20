@@ -14,18 +14,17 @@ Poke Guide is a comprehensive web application designed to help users discover an
 
 ## Visual Demonstration
 
-| Desktop (Light) | Desktop (Dark) |
-| :---: | :---: |
+|                         Desktop (Light)                         |                        Desktop (Dark)                         |
+| :-------------------------------------------------------------: | :-----------------------------------------------------------: |
 | ![Desktop Light](src/assets/images/poke-guide-destop-light.png) | ![Desktop Dark](src/assets/images/poke-guide-destop-dark.png) |
 
-| Mobile (Light) | Mobile (Dark) |
-| :---: | :---: |
+|                         Mobile (Light)                         |                        Mobile (Dark)                         |
+| :------------------------------------------------------------: | :----------------------------------------------------------: |
 | ![Mobile Light](src/assets/images/poke-guide-mobile-light.png) | ![Mobile Dark](src/assets/images/poke-guide-mobile-dark.png) |
 
-| Menu (Light) | Menu (Dark) |
-| :---: | :---: |
+|                           Menu (Light)                            |                           Menu (Dark)                           |
+| :---------------------------------------------------------------: | :-------------------------------------------------------------: |
 | ![Menu Light](src/assets/images/poke-guide-menu-mobile-light.png) | ![Menu Dark](src/assets/images/poke-guide-menu-mobile-dark.png) |
-
 
 ## Getting Started
 
@@ -73,18 +72,17 @@ Poke Guide é uma aplicação web completa projetada para ajudar usuários a des
 
 ## Demonstração Visual
 
-| Desktop (Claro) | Desktop (Escuro) |
-| :---: | :---: |
+|                         Desktop (Claro)                         |                        Desktop (Escuro)                         |
+| :-------------------------------------------------------------: | :-------------------------------------------------------------: |
 | ![Desktop Claro](src/assets/images/poke-guide-destop-light.png) | ![Desktop Escuro](src/assets/images/poke-guide-destop-dark.png) |
 
-| Mobile (Claro) | Mobile (Escuro) |
-| :---: | :---: |
+|                         Mobile (Claro)                         |                        Mobile (Escuro)                         |
+| :------------------------------------------------------------: | :------------------------------------------------------------: |
 | ![Mobile Claro](src/assets/images/poke-guide-mobile-light.png) | ![Mobile Escuro](src/assets/images/poke-guide-mobile-dark.png) |
 
-| Menu (Claro) | Menu (Escuro) |
-| :---: | :---: |
+|                           Menu (Claro)                            |                           Menu (Escuro)                           |
+| :---------------------------------------------------------------: | :---------------------------------------------------------------: |
 | ![Menu Claro](src/assets/images/poke-guide-menu-mobile-light.png) | ![Menu Escuro](src/assets/images/poke-guide-menu-mobile-dark.png) |
-
 
 ## Como Começar
 
