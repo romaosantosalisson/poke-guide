@@ -1,29 +1,64 @@
 .navbar {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex: 1;
+  z-index: 1000;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
 }
 
 .navbar-list {
-  display: flex;
+  display: none;
   list-style: none;
-  gap: 1rem;
-  padding: 0.6rem;
-  background-color: rgba(15, 23, 42, 0.04);
-  border-radius: 5rem;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  transition: all 0.3s ease;
 }
 
-/* Dark mode adjustment for the navbar list background and border */
-:root.dark .navbar-list {
-  background-color: rgba(248, 250, 252, 0.06);
-  border: 1px solid rgba(248, 250, 252, 0.1);
+@media (max-width: 768px) {
+  .navbar-list.open {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background);
+    z-index: 999;
+  }
+
+  .navbar-item {
+    margin: 1rem 0;
+  }
 }
 
-.navbar-item {
-  display: flex;
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+
+  .navbar-list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 1rem;
+    padding: 0.6rem;
+    background-color: rgba(15, 23, 42, 0.04);
+    border-radius: 5rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  :root.dark .navbar-list {
+    background-color: rgba(248, 250, 252, 0.06);
+    border: 1px solid rgba(248, 250, 252, 0.1);
+  }
 }
 
 .navbar-button {
@@ -45,13 +80,11 @@
   outline: none;
 }
 
-/* Focus style for accessibility */
 .navbar-button:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 
-/* Hover effects */
 .navbar-button:hover {
   color: var(--text-primary);
   background-color: rgba(59, 130, 246, 0.12);
@@ -83,42 +116,4 @@
 
 :root.dark .navbar-button.active:hover {
   background-color: var(--blue);
-}
-
-@media (max-width: 1024px) {
-  .navbar-button {
-    font-size: 1.4rem;
-    padding: 0.8rem 1.4rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-list {
-    gap: 0.5rem;
-    padding: 0.4rem;
-  }
-
-  .navbar-button {
-    font-size: 1.3rem;
-    padding: 0.6rem 1.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    width: 100%;
-  }
-
-  .navbar-list {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 2rem;
-    padding: 0.8rem;
-  }
-
-  .navbar-button {
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
-  }
 }

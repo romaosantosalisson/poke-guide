@@ -14,7 +14,6 @@ export function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/home" element={<Home />} /> */}
             <Route path="/search-name" element={<SearchByName />} />
             <Route path="/search-type" element={<SearchByType />} />
             <Route path="/search-ability" element={<SearchByAbility />} />

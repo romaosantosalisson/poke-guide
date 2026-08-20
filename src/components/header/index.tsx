@@ -1,20 +1,25 @@
 import { Theme } from "../theme";
 import { Navbar } from "../navbar";
-import { LanguageSelector } from "./LanguageSelector";
+import { LanguageSelector } from "../languageSelector/";
 import "./header.css";
 import logo from "../../assets/images/logo.svg";
 
 export function Header() {
   return (
-    <header>
-      <h1>
-        <img src={logo} alt="Poke Bola" />
-        Poke Guide
-      </h1>
-      <Navbar />
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Theme />
-        <LanguageSelector />
+    <header className="header">
+      <div className="header-brand">
+        <div className="main-header">
+          <img src={logo} alt="Poke Ball" className="header-logo" />
+          <h1 className="header-title">Poke Guide</h1>
+        </div>
+        <Navbar />
+      </div>
+
+      <div className="header-right">
+        <div className="header-actions">
+          <Theme />
+          <LanguageSelector />
+        </div>
       </div>
     </header>
   );

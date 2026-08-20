@@ -9,7 +9,8 @@
 /* O Card de Pokémon - Design Premium */
 .pokemon-card {
   position: relative;
-  width: 320px;
+  width: 100%; /* Mobile-first: full width */
+  max-width: 320px; /* Limit width on larger screens */
   font-family: "Oswald", sans-serif;
   background-color: var(--cards);
   border-radius: 2.4rem;

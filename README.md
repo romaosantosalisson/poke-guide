@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+<img src="src/assets/images/logo.svg" alt="Poke Guide Logo" width="50" height="50"/> 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Poke Guide
 
-Currently, two official plugins are available:
+[English](#english) | [Português](#português)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+<a name="english"></a>
+# English
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## About the Project
+Poke Guide is a comprehensive web application designed to help users discover and explore information about Pokémon. It provides various search functionalities, including searching by name, type, and ability.
 
-## Expanding the ESLint configuration
+## Technologies Used
+- **React** (with TypeScript)
+- **Vite**
+- **react-router-dom**
+- **i18next** (for internationalization)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+### Prerequisites
+- Node.js (v20+)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd poke-guide
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+### Running the Project
+- To start in development mode:
+  ```bash
+  npm run dev
+  ```
+- To build for production:
+  ```bash
+  npm run build
+  ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+<div align="center">MIT License | Created by <a href="https://github.com/romaosantosalisson">Álisson</a></div>
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+---
+
+<a name="português"></a>
+# Português
+
+## Sobre o Projeto
+Poke Guide é uma aplicação web completa projetada para ajudar usuários a descobrir e explorar informações sobre Pokémon. Ela oferece diversas funcionalidades de busca, incluindo busca por nome, tipo e habilidade.
+
+## Tecnologias Utilizadas
+- **React** (com TypeScript)
+- **Vite**
+- **react-router-dom**
+- **i18next** (para internacionalização)
+
+## Como Começar
+
+### Pré-requisitos
+- Node.js (v20+)
+- npm ou yarn
+
+### Instalação
+1. Clone o repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   cd poke-guide
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+### Executando o Projeto
+- Para iniciar em modo de desenvolvimento:
+  ```bash
+  npm run dev
+  ```
+- Para realizar o build de produção:
+  ```bash
+  npm run build
+  ```
+
+---
+
+<div align="center">MIT License | Criado por <a href="https://github.com/romaosantosalisson">Álisson</a></div>

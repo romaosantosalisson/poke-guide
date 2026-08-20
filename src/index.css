@@ -63,14 +63,22 @@ main {
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center; /* Mobile-first: center content */
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  /* md */
+  main {
+    justify-content: flex-start;
+    padding: 2rem;
+  }
 }
 
 main > h2 {
   width: 100%;
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--text-primary);
   padding: 1rem 1.5rem;
@@ -82,8 +90,9 @@ main > h2 {
     color 0.2s ease-in-out;
 }
 
-@media (max-width: 768px) {
-  main {
-    justify-content: center;
+@media (min-width: 768px) {
+  /* md */
+  main > h2 {
+    font-size: 3rem;
   }
 }
