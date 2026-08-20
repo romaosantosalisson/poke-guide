@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Home } from "./pages/Home";
@@ -8,7 +8,7 @@ import { SearchByAbility } from "./pages/SearchByAbility";
 
 export function App() {
   return (
-    <BrowserRouter>
+    <HashRouter basename="/poke-guide/">
       <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Header />
         <main>
@@ -22,6 +22,6 @@ export function App() {
         </main>
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
