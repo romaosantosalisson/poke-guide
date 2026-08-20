@@ -8,7 +8,7 @@ import { SearchByAbility } from "./pages/SearchByAbility";
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/poke-guide">
       <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Header />
         <main>
