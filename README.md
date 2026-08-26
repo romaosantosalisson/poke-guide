@@ -273,7 +273,7 @@ O **Poke Guide** foi desenvolvido como uma aplicação frontend para praticar e 
 
 ---
 
-## 👨‍💻 Autor
+## 🧑🏻‍💻 Autor
 
 <div align="center">
 
